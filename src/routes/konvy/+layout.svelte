@@ -24,7 +24,7 @@
 	</div>
 </nav>
 
-<main class="bg-gradient-to-t from-brand/50 to-white min-h-screen pt-20">
+<main class="bg-gradient-to-t from-brand/50 to-white text-black min-h-screen pt-20">
 	{@render children?.()}
 </main>
 

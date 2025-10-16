@@ -2,26 +2,31 @@
   const talents = [
     {
       name: 'Talent 1',
+      slug: 'talent-1',
       image: '/logo/konvy_logo_black.png',
       description: 'A talent is a person who is talented.',
     },
     {
       name: 'Talent 2',
+      slug: 'talent-2',
       image: '/logo/konvy_logo_white.png',
       description: 'A talent is a person who is talented.',
     },
     {
       name: 'Talent 3',
+      slug: 'talent-3',
       image: '/logo/konvy_logo_brand.png',
       description: 'A talent is a person who is talented.',
     },
     {
       name: 'Talent 4',
+      slug: 'talent-4',
       image: '/logo/koneksa_logo.png',
       description: 'A talent is a person who is talented.',
     },
     {
       name: 'Talent 5',
+      slug: 'talent-5',
       image: '/logo/koneksa_logotype.png',
       description: 'A talent is a person who is talented.',
     },
@@ -56,7 +61,7 @@
           <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 via-black/50 to-transparent">
             <h3>{talent.name}</h3>
             <p>{talent.description}</p>
-            <a href={`/konvy/talents/`}>
+            <a href={`/konvy/talents/${talent.slug}`}>
               <button>View Talent</button>
             </a>
           </div>
