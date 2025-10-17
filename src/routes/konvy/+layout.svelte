@@ -24,7 +24,10 @@
 	</div>
 </nav>
 
-<main class="bg-gradient-to-t from-brand/50 to-white text-black min-h-screen pt-20">
-	{@render children?.()}
+<main class="min-h-screen pt-20">
+	<div class="fixed top-0 left-0 w-full h-full bg-gradient-to-t from-brand/20 md:from-brand/40 to-white"></div>
+	<div class="relative z-10">
+		{@render children?.()}
+	</div>
 </main>
 
