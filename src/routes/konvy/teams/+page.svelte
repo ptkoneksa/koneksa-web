@@ -46,7 +46,7 @@
       >
         {#each teams.items ?? [] as team}
           <div
-            class="card bg-brand aspect-square text-white relative overflow-hidden"
+            class="card group bg-brand aspect-square text-white relative overflow-hidden"
           >
             <img
               src="/background/konvy_background_loop.png"
@@ -57,16 +57,22 @@
               <img
                 src={team.imageUrl}
                 alt={team.name}
-                class="absolute top-0 left-0 w-full h-full object-cover"
+                class="absolute top-0 left-0 w-full h-full object-cover object-bottom"
               />
             {/if}
             <div
               class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 via-black/60 to-transparent"
             >
               <h3>{team.name}</h3>
-              <p class="text-white/70 line-clamp-1">{team.description}</p>
+              <p class="text-white/70 line-clamp-1">
+                {team.department} - {team.position}
+              </p>
+            </div>
+            <div
+              class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/50"
+            >
               <a href={`/konvy/teams/${team.slug}`}>
-                <button class="button mt-2">View Team</button>
+                <button class="button mt-2">View Profile</button>
               </a>
             </div>
           </div>

@@ -19,14 +19,39 @@ export enum TalentSocialMediaType {
   FACEBOOK,
 }
 
+export enum TeamType {
+  CONTRACT,
+  FULLTIME,
+  PARTTIME,
+  FREELANCE,
+  INTERNSHIP,
+  VOLUNTEER,
+  OTHER,
+}
+
+export enum Gender {
+  MALE,
+  FEMALE,
+}
+
+export enum Religion {
+  ISLAM,
+  KRISTEN,
+  KONGHUCU,
+  HINDU,
+  BUDDHA,
+  OTHER,
+}
+
 export interface Talent {
   id: string;
   connectId: string | null;
-  type: string;
+  type: TalentType;
   name: string;
   slug: string;
   description: string;
   imageUrl: string | null;
+  gender: Gender | null;
   isActive: boolean;
   isPrivate: boolean;
   tags: string[];
@@ -43,7 +68,7 @@ export interface TalentContact {
   id: string;
   talentId: string;
   talent: Talent;
-  type: string;
+  type: TalentContactType;
   value: string;
   isManager: boolean;
   name: string | null;
@@ -55,7 +80,7 @@ export interface TalentSocialMedia {
   id: string;
   talentId: string;
   talent: Talent;
-  type: string;
+  type: TalentSocialMediaType;
   value: string;
   url: string | null;
   followers: number | null;
@@ -76,4 +101,26 @@ export interface TalentRateCard {
   title: string;
   description: string;
   benefits: string[];
+}
+
+export interface Team {
+  id: string;
+  type: TeamType;
+  name: string;
+  slug: string;
+  description: string;
+  imageUrl: string | null;
+  gender: Gender | null;
+  religion: Religion | null;
+  isActive: boolean;
+  isPrivate: boolean;
+  department: string | null;
+  position: string | null;
+  location: string | null;
+  currency: string;
+  salary: number | null;
+  joinedAt: Date;
+  leftAt: Date | null;
+  createdAt: Date;
+  updatedAt: Date;
 }
