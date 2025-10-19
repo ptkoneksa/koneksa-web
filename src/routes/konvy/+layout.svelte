@@ -31,6 +31,12 @@
         >
           Talents
         </a>
+        <a
+          href="/konvy/teams"
+          class="font-medium text-white hover:text-gray-200"
+        >
+          Teams
+        </a>
       </div>
     </div>
   </div>

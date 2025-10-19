@@ -1,4 +1,6 @@
 <script lang="ts">
+  import Icon from "@iconify/svelte";
+
   let { data } = $props();
   let { talents } = data;
 </script>
@@ -7,7 +9,7 @@
   <!-- Hero Section -->
   <section
     id="hero"
-    class="min-h-[50vh] flex flex-col items-center justify-center"
+    class="min-h-[50vh] flex flex-col items-start justify-center"
   >
     <img src="/logo/konvy_logo_brand.png" alt="Konvy" class="h-24" />
     <h1 class="text-brand tracking-tighter font-medium">Koneksa Environment</h1>
@@ -15,14 +17,42 @@
       Konvy is a <span class="text-brand underline">talent agency</span> platform
       with Koneksa Environment.
     </h2>
-    <a href="#talents">
-      <button class="button mt-4">Find & Hire Talent</button>
-    </a>
+    <p>
+      There is two different types of Konvy: <span class="text-brand underline"
+        >Bridge</span
+      >
+      and <span class="text-brand underline">Team</span>.
+    </p>
+    <ul class="list-disc list-inside text-sm text-black/70">
+      <li>
+        <span class="text-brand underline">Bridge</span> is a platform that
+        connects you with our talents that
+        <span class="text-brand">you can hire</span>.
+      </li>
+      <li>
+        <span class="text-brand underline">Team</span> is our internal team that
+        works for PT Koneksa.
+      </li>
+    </ul>
+    <div class="flex items-center flex-wrap gap-2 mt-4">
+      <a href="#talents">
+        <button class="button flex items-center gap-2">
+          <Icon icon="mingcute:arrow-down-line" width="24" height="24" />
+          <span>Find & Hire Talent</span>
+        </button>
+      </a>
+      <a href="/konvy/teams">
+        <button class="button flex items-center gap-2">
+          <Icon icon="mingcute:arrow-right-line" width="24" height="24" />
+          <span>View Our Internal Teams</span>
+        </button>
+      </a>
+    </div>
   </section>
 
   <!-- Talents Section -->
   <section id="talents">
-    <div class="text-center">
+    <div>
       <h2>Konvy Bridge</h2>
       <p>
         a bridge that connects you with <img
@@ -72,16 +102,20 @@
         {/each}
       </div>
     {:else}
-      <p class="text-black/70 text-center italic my-4">
+      <p class="text-black/70 italic my-4">
         No talents found. Please check back later.
       </p>
     {/if}
 
-    <div class="mt-8 w-max mx-auto text-center">
-      <p class="text-black/70 italic">~ Maybe not what you're looking for? ~</p>
-      <a href="/konvy/talents">
-        <button class="button mt-2">View All Talents</button>
-      </a>
+    <div class="mt-8 w-max">
+      <p class="text-black/70 italic">
+        ~ Maybe not what you're looking for? <a
+          href="/konvy/teams"
+          class="text-brand underline"
+        >
+          View Our Internal Teams
+        </a> ~
+      </p>
     </div>
   </section>
 </div>
