@@ -75,10 +75,10 @@
                   <div
                     class="w-10 h-10 rounded-tl-xl rounded-br-xl bg-white/70 flex items-center justify-center p-2"
                   >
-                    {#if socialMediaIcons[socialMedia.type as keyof typeof socialMediaIcons]}
+                    {#if socialMediaIcons[socialMedia.type as unknown as keyof typeof socialMediaIcons]}
                       <Icon
                         icon={socialMediaIcons[
-                          socialMedia.type as keyof typeof socialMediaIcons
+                          socialMedia.type as unknown as keyof typeof socialMediaIcons
                         ]}
                         width="256"
                         height="256"
@@ -165,9 +165,11 @@
             target="_blank"
             class="rounded-tl-xl rounded-br-xl bg-white/70 flex items-center justify-center px-4 py-2 space-x-2"
           >
-            {#if contactIcons[contact.type as keyof typeof contactIcons]}
+            {#if contactIcons[contact.type as unknown as keyof typeof contactIcons]}
               <Icon
-                icon={contactIcons[contact.type as keyof typeof contactIcons]}
+                icon={contactIcons[
+                  contact.type as unknown as keyof typeof contactIcons
+                ]}
                 width="24"
                 height="24"
               />

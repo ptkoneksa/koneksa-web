@@ -1,14 +1,19 @@
-export function formatKonvyTalentContactLink(type: string, value: string) {
-  if (type === "EMAIL") {
+import { TalentContactType } from "$lib/api/models/konvy";
+
+export function formatKonvyTalentContactLink(
+  type: TalentContactType,
+  value: string
+) {
+  if (type === TalentContactType.EMAIL) {
     return `mailto:${value}`;
   }
-  if (type === "WHATSAPP") {
+  if (type === TalentContactType.WHATSAPP) {
     return `https://wa.me/${value.replace(/[^0-9]/g, "")}`.replace(/^0/, "62");
   }
-  if (type === "TELEGRAM") {
+  if (type === TalentContactType.TELEGRAM) {
     return `https://t.me/${value.replace(/[^a-zA-Z0-9]/g, "")}`;
   }
-  if (type === "INSTAGRAM") {
+  if (type === TalentContactType.INSTAGRAM) {
     return `https://www.instagram.com/${value.replace(/[^a-zA-Z0-9]/g, "")}`;
   }
   return value;
