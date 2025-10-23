@@ -1,5 +1,52 @@
 <script lang="ts">
-  let { children } = $props();
+  import Icon from "@iconify/svelte";
+  import { MegaMenu } from "flowbite-svelte";
+
+  let { children, data } = $props();
+  const currentRoute = $derived(data.url.pathname);
+
+  const navigation = [
+    {
+      label: "Home",
+      href: "/",
+    },
+    {
+      label: "Contact",
+      href: "#contact",
+    },
+  ];
+
+  const socialMedia = [
+    {
+      label: "Instagram",
+      href: "https://www.instagram.com/koneksa",
+    },
+  ];
+
+  const contact = [
+    {
+      label: "Email",
+      href: "mailto:info@koneksa.id",
+    },
+  ];
+
+  const legal = [
+    {
+      label: "Privacy Policy",
+      href: "/privacy-policy",
+    },
+    {
+      label: "Terms of Service",
+      href: "/terms-of-service",
+    },
+    {
+      label: "Certificate",
+      href: "/certificate",
+    },
+  ];
+
+  let isProductAndServicesMenuOpen = $state(false);
+  let isNavigationMobileOpen = $state(false);
 </script>
 
 <nav
@@ -13,9 +60,86 @@
         </a>
       </div>
 
-      <!-- Navigation -->
-      <div class="flex items-center gap-4 uppercase">
-        <a href="/" class="font-medium hover:text-black/70"> Home </a>
+      <!-- Navigation Desktop -->
+      <div class="hidden md:flex items-center gap-4 uppercase">
+        {#each navigation as item}
+          <a
+            href={item.href}
+            class="font-medium hover:text-black/70 {currentRoute === item.href
+              ? 'text-brand font-bold'
+              : ''}"
+          >
+            {item.label}
+          </a>
+        {/each}
+        <div>
+          <button
+            class="uppercase font-medium flex items-center"
+            onclick={() =>
+              (isProductAndServicesMenuOpen = !isProductAndServicesMenuOpen)}
+          >
+            <span>Product & Services</span>
+            <Icon icon="mingcute:down-small-line" width="24" height="24" />
+          </button>
+          <MegaMenu
+            isOpen={isProductAndServicesMenuOpen}
+            class="border-2 border-brand rounded-tl-3xl rounded-br-3xl"
+          >
+            <div class="flex flex-col gap-2">
+              {#each data.productAndServices as item}
+                <a
+                  href={item.link}
+                  target={item.target}
+                  class="hover:text-brand"
+                >
+                  <h3>{item.name}</h3>
+                </a>
+              {/each}
+            </div>
+          </MegaMenu>
+        </div>
+        <a href="/auth">
+          <button class="button flex items-center gap-2">
+            <Icon icon="mingcute:user-1-line" width="24" height="24" />
+            <span>Sign In</span>
+          </button>
+        </a>
+      </div>
+
+      <!-- Navigation Mobile -->
+      <div class="md:hidden">
+        <button
+          onclick={() => (isNavigationMobileOpen = !isNavigationMobileOpen)}
+        >
+          <Icon icon="mingcute:menu-line" width="24" height="24" />
+        </button>
+        <MegaMenu
+          isOpen={isNavigationMobileOpen}
+          class="border-2 border-brand rounded-tl-3xl rounded-br-3xl w-full"
+        >
+          <div class="flex flex-col gap-2 text-lg">
+            {#each navigation as item}
+              <a
+                href={item.href}
+                class="font-medium hover:text-black/70 {currentRoute ===
+                item.href
+                  ? 'text-brand font-bold'
+                  : ''}"
+              >
+                {item.label}
+              </a>
+            {/each}
+            {#each data.productAndServices as item}
+              <a href={item.link} target={item.target}>{item.name}</a>
+            {/each}
+            <a href="/auth">
+              <button class="button flex items-center gap-2">
+                <Icon icon="mingcute:user-1-line" width="24" height="24" />
+                <span>Sign In</span>
+              </button>
+            </a>
+          </div>
+        </MegaMenu>
       </div>
     </div>
   </div>
@@ -30,9 +154,54 @@
   </div>
 </main>
 
-<footer class="pt-12 pb-24 bg-brand relative z-10">
+<footer class="pt-12 pb-24 bg-brand text-white relative z-10 min-h-[25vh]">
   <div class="container mx-auto p-4">
-    <p class="text-center text-white">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8">
+      <div>
+        <img
+          src="/logo/koneksa_logotype.png"
+          alt="Koneksa"
+          class="h-10 brightness-0 invert"
+        />
+        <p>PT Koneksi Kreatif Nusantara (Koneksa)</p>
+        <p>Connect Together, Made Simple.</p>
+      </div>
+      <div>
+        <h4 class="font-medium">Quick Links</h4>
+        <ul>
+          {#each navigation as item}
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          {/each}
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-medium">Legal</h4>
+        <ul>
+          {#each legal as item}
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          {/each}
+        </ul>
+        <div class="bg-white p-4 rounded-tl-3xl rounded-br-3xl mt-4">
+          <div class="flex items-center justify-center gap-2">
+            <img
+              src="/certificate/logo-komdigi.png"
+              alt="Komdigi"
+              class="h-10"
+            />
+            <img src="/certificate/logo-pse.png" alt="Komdigi" class="h-10" />
+          </div>
+          <p class="text-black/70 text-sm text-center">
+            TDPSE: 015335.01/DJAI.PSE/08/2024
+          </p>
+        </div>
+      </div>
+    </div>
+    <hr class="my-8 border-2 border-white/10" />
+    <p class="text-center text-white mt-8">
       &copy; {new Date().getFullYear()} PT Koneksi Kreatif Nusantara (Koneksa). All
       rights reserved.
     </p>
