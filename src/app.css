@@ -31,11 +31,23 @@
     @apply text-sm md:text-base;
   }
 
+  button {
+    @apply cursor-pointer;
+  }
+
   .button {
     @apply bg-brand hover:bg-brand/80 text-white px-4 py-2 rounded-tl-2xl rounded-br-2xl cursor-pointer transition-all duration-300 text-nowrap;
   }
 
   .card {
     @apply p-4 rounded-tl-3xl rounded-br-3xl;
+  }
+
+  .input {
+    @apply block border-2 border-black/10 rounded-tl-3xl rounded-br-3xl px-4 py-2 outline-none focus:border-brand transition-all duration-300;
+  }
+
+  .input input {
+    @apply outline-none w-full;
   }
 }
