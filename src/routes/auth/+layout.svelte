@@ -1,6 +1,5 @@
 <script lang="ts">
   import Footer from "$lib/components/Footer.svelte";
-  import Icon from "@iconify/svelte";
 
   let { children, data } = $props();
 

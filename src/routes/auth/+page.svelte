@@ -1,16 +1,14 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   import { PUBLIC_CONNECT_API_URL } from "$env/static/public";
-  import type { AuthResponse } from "$lib/api/models/connect/index.js";
-  import type { ConnectWebResponse } from "$lib/api/models/connect/web_response.js";
+  import type { AuthResponse } from "$lib/api/connect/models";
+  import type { ConnectWebResponse } from "$lib/api/connect/web_response";
+  import { connectUser } from "$lib/stores/connect.js";
   import Icon from "@iconify/svelte";
 
   let { data } = $props();
-  let { url } = data;
+  let { targetRedirectUrl, url } = data;
 
-  const targetRedirectUrl = $derived(
-    url.searchParams.get("targetRedirectUrl") ?? url.host + "/account"
-  );
   const isRegister = $derived(url.searchParams.get("register") == "true");
 
   let isEmailAndPassword = $state(false);
@@ -50,7 +48,13 @@
 
       localStorage.setItem("accessToken", responseBody.data.accessToken);
       localStorage.setItem("refreshToken", responseBody.data.refreshToken);
-      window.location.href = targetRedirectUrl;
+      connectUser.set(responseBody.data.user);
+
+      if (!responseBody.data.user.isEmailVerified) {
+        goto("/auth/verify-email");
+      } else {
+        window.location.href = targetRedirectUrl;
+      }
     } catch (error) {
       console.error(error);
       loginError = error instanceof Error ? error.message : "Failed to login";

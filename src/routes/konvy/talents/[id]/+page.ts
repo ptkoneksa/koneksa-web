@@ -1,5 +1,5 @@
 import { PUBLIC_KONVY_API_URL } from "$env/static/public";
-import type { Talent } from "$lib/api/models/konvy";
+import type { Talent } from "$lib/api/konvy/models";
 
 export const load = async ({ fetch, params }) => {
   try {

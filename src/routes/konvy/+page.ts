@@ -1,6 +1,6 @@
 import { PUBLIC_KONVY_API_URL } from "$env/static/public";
-import type { Talent } from "$lib/api/models/konvy";
-import type { KonvyPaginated } from "$lib/api/models/konvy/web_response";
+import type { Talent } from "$lib/api/konvy/models";
+import type { KonvyPaginated } from "$lib/api/konvy/web_response";
 
 export const load = async ({ fetch }) => {
   try {

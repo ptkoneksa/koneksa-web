@@ -1,12 +1,12 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   import { PUBLIC_CONNECT_API_URL } from "$env/static/public";
-  import type { AuthResponse } from "$lib/api/models/connect/index.js";
-  import type { ConnectWebResponse } from "$lib/api/models/connect/web_response.js";
+  import type { AuthResponse } from "$lib/api/connect/models";
+  import type { ConnectWebResponse } from "$lib/api/connect/web_response";
   import Icon from "@iconify/svelte";
 
   let { data } = $props();
-  let { url } = data;
+  let { connectUser, url } = data;
 
   const targetRedirectUrl = $derived(
     url.searchParams.get("targetRedirectUrl") ?? url.host + "/account"

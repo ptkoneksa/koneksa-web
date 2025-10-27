@@ -1,4 +1,4 @@
-import { TalentContactType } from "$lib/api/models/konvy";
+import { TalentContactType } from "$lib/api/konvy/models";
 
 export function formatKonvyTalentContactLink(
   type: TalentContactType,
