@@ -63,3 +63,7 @@ export const verifyAccessToken = async (): Promise<AuthResponse | null> => {
     }
   }
 };
+
+export const getAccessToken = (): string | null => {
+  return localStorage.getItem("accessToken");
+};

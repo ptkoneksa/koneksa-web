@@ -1,6 +1,11 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   import { PUBLIC_CONNECT_API_URL } from "$env/static/public";
+  import {
+    getAccessToken,
+    verifyAccessToken,
+  } from "$lib/api/connect/access_token.js";
+  import type { ConnectWebResponse } from "$lib/api/connect/web_response.js";
   import { maskEmail } from "$lib/util/masking.js";
   import Icon from "@iconify/svelte";
 
@@ -63,14 +68,18 @@
     sendVerifyEmailLoading = true;
     try {
       const response = await fetch(
-        `${PUBLIC_CONNECT_API_URL}/auth/verify-email`,
+        `${PUBLIC_CONNECT_API_URL}/auth/verify-email-request`,
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            Authorization: `Bearer ${getAccessToken()}`,
           },
         }
       );
+      const responseBody: ConnectWebResponse<void> = await response.json();
+      if (!responseBody.success) {
+        throw new Error(responseBody.message);
+      }
       localStorage.setItem("lastVerifyEmailSentAt", new Date().toISOString());
       window.location.href = `${url.pathname}?sent=true`;
     } catch (error) {
