@@ -36,9 +36,11 @@ export const load = async ({ url }) => {
     if (connectUser.isEmailVerified) {
       goto(url.searchParams.get("targetRedirectUrl") ?? url.host + "/account");
     }
+    const lastVerifyEmailSentAt = localStorage.getItem("lastVerifyEmailSentAt");
     return {
       connectUser,
       url,
+      lastVerifyEmailSentAt,
     };
   }
 };

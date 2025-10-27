@@ -1,21 +1,63 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   import { PUBLIC_CONNECT_API_URL } from "$env/static/public";
-  import type { AuthResponse } from "$lib/api/connect/models";
-  import type { ConnectWebResponse } from "$lib/api/connect/web_response";
+  import { maskEmail } from "$lib/util/masking.js";
   import Icon from "@iconify/svelte";
 
   let { data } = $props();
-  let { connectUser, url } = data;
+  let { connectUser, url, lastVerifyEmailSentAt } = data;
 
   const targetRedirectUrl = $derived(
     url.searchParams.get("targetRedirectUrl") ?? url.host + "/account"
   );
+  const verifyEmailSentSuccess = $derived(
+    url.searchParams.get("sent") === "true"
+  );
 
   let sendVerifyEmailError = $state<string | null>(null);
   let sendVerifyEmailLoading = $state(false);
+  let sendVerifyEmailCooldownTime = $state(0);
+  let isVerifyEmailCooldown = $derived(sendVerifyEmailCooldownTime > 0);
+
+  $effect(() => {
+    let interval: number;
+
+    if (lastVerifyEmailSentAt) {
+      const updateCooldown = () => {
+        sendVerifyEmailCooldownTime =
+          new Date(lastVerifyEmailSentAt).getTime() +
+          30000 -
+          new Date().getTime();
+
+        if (sendVerifyEmailCooldownTime <= 0) {
+          clearInterval(interval);
+        }
+      };
+
+      updateCooldown();
+
+      if (sendVerifyEmailCooldownTime > 0) {
+        interval = setInterval(updateCooldown, 1000);
+      }
+    } else {
+      sendVerifyEmailCooldownTime = 0;
+    }
+
+    return () => {
+      if (interval) {
+        clearInterval(interval);
+      }
+    };
+  });
   const handleSendVerifyEmail = async (e: Event) => {
     e.preventDefault();
+
+    if (isVerifyEmailCooldown) {
+      sendVerifyEmailError = `Please try again in ${Math.ceil(
+        sendVerifyEmailCooldownTime / 1000
+      )} seconds.`;
+      return;
+    }
 
     sendVerifyEmailError = null;
     sendVerifyEmailLoading = true;
@@ -29,6 +71,8 @@
           },
         }
       );
+      localStorage.setItem("lastVerifyEmailSentAt", new Date().toISOString());
+      window.location.href = `${url.pathname}?sent=true`;
     } catch (error) {
       console.error(error);
       sendVerifyEmailError =
@@ -53,6 +97,59 @@
         />
       </div>
       <hr class="my-2 border border-black/10" />
+      {#if connectUser}
+        <div>
+          {#if !verifyEmailSentSuccess}
+            <p class="text-center">
+              Your email is not verified yet. Please verify your email to
+              continue.
+            </p>
+            {#if sendVerifyEmailError}
+              <p class="text-red-500 text-center">
+                Error: {sendVerifyEmailError}
+              </p>
+            {/if}
+            <button
+              class={`button mx-auto my-2 bg-white text-black border border-brand flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed`}
+              onclick={handleSendVerifyEmail}
+              disabled={sendVerifyEmailLoading || isVerifyEmailCooldown}
+            >
+              <Icon icon="mingcute:mail-line" width="24" height="24" />
+              <span>
+                {sendVerifyEmailLoading
+                  ? "Sending..."
+                  : `Send email verification to ${maskEmail(connectUser.email)}`}
+              </span>
+            </button>
+          {:else}
+            <div class="mt-4 text-black/70 text-center">
+              <h2 class="text-brand text-center font-bold">
+                Verification email sent successfully
+              </h2>
+              <p>
+                Please check your email for the <span
+                  class="text-brand underline">verification link</span
+                >. If you don't see it, check your spam folder.
+              </p>
+              <p class="mt-4">
+                Didn't receive the email?
+                {#if isVerifyEmailCooldown}
+                  <span
+                    >Please try again in {Math.ceil(
+                      sendVerifyEmailCooldownTime / 1000
+                    )} seconds.</span
+                  >
+                {:else}
+                  <button
+                    class="text-brand underline"
+                    onclick={handleSendVerifyEmail}>Send again</button
+                  >
+                {/if}
+              </p>
+            </div>
+          {/if}
+        </div>
+      {/if}
     </div>
     <p class="text-xs text-black/70 mt-4">
       You will be redirected to <span class="text-brand underline"
