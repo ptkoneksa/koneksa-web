@@ -5,6 +5,22 @@
   let { talents } = data;
 </script>
 
+<svelte:head>
+  <title>Konvy | Koneksa Environment</title>
+  <meta
+    name="description"
+    content="Konvy is a talent agency platform with Koneksa Environment."
+  />
+  <meta
+    name="keywords"
+    content="Konvy, Koneksa Environment, Talent, Agency, Platform"
+  />
+  <meta name="author" content="PT Koneksi Kreatif Nusantara (Koneksa)" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+</svelte:head>
+
 <div class="container mx-auto p-4 pb-24">
   <!-- Hero Section -->
   <section

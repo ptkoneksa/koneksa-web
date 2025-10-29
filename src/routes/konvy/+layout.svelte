@@ -44,7 +44,7 @@
 
 <main class="min-h-screen pt-20">
   <div
-    class="fixed top-0 left-0 w-full h-full bg-gradient-to-t from-brand/20 md:from-brand/40 to-white"
+    class="fixed top-0 left-0 w-full h-full bg-gradient-to-t from-brand/10 md:from-brand/20 to-white"
   ></div>
   <div class="relative z-10">
     {@render children?.()}

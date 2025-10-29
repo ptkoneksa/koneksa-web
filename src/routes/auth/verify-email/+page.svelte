@@ -92,6 +92,19 @@
   };
 </script>
 
+<svelte:head>
+  <title>Verify Email | Connect Together, Made Simple.</title>
+  <meta name="description" content="Verify your email to continue." />
+  <meta
+    name="keywords"
+    content="Verify Email, Connect, Together, Made, Simple"
+  />
+  <meta name="author" content="PT Koneksi Kreatif Nusantara (Koneksa)" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+</svelte:head>
+
 <div class="container mx-auto p-4 pb-24">
   <div class="flex flex-col items-center justify-center p-4 pb-24 min-h-screen">
     <div

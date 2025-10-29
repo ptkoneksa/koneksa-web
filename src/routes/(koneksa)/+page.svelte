@@ -14,6 +14,19 @@
     }));
 </script>
 
+<svelte:head>
+  <title>Koneksa | Connect Together, Made Simple.</title>
+  <meta
+    name="description"
+    content="Koneksa is a central hub for all Koneksa services."
+  />
+  <meta name="keywords" content="Koneksa, Connect, Together, Made, Simple" />
+  <meta name="author" content="PT Koneksi Kreatif Nusantara (Koneksa)" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+</svelte:head>
+
 <div class="container mx-auto p-4 pb-24">
   <!-- Hero Section -->
   <section

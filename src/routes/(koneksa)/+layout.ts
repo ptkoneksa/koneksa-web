@@ -18,6 +18,15 @@ export const load = async ({ url }) => {
       target: "_blank",
     },
     {
+      name: "JKT48Lab",
+      description:
+        "JKT48Lab is a media platform for JKT48. You can find all the latest news, videos, and more about JKT48 here.",
+      category: "Media",
+      image: "https://konvy-s3.koneksa.id/logo/jkt48lab_logo_white.png",
+      link: "https://jkt48lab.agil.zip",
+      target: "_blank",
+    },
+    {
       name: "Kopi Koneksa",
       description:
         "Sebagai wadah untuk saling terhubung dan berbagi cerita. Kami percaya, setiap cangkir kopi punya cerita, dan kami tak sabar untuk mendengar cerita kamu bersama teman, pasangan, atau keluarga di Kopi Koneksa. Mari kita nikmati perjalanan rasa kopi ini bersama-sama. Sampai jumpa di outlet kami!",

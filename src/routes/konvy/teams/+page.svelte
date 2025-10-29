@@ -5,6 +5,22 @@
   let { teams } = data;
 </script>
 
+<svelte:head>
+  <title>Konvy Teams | Koneksa Environment</title>
+  <meta
+    name="description"
+    content="Konvy Teams is a internal team that works for PT Koneksa."
+  />
+  <meta
+    name="keywords"
+    content="Konvy Teams, Koneksa Environment, Internal Team"
+  />
+  <meta name="author" content="PT Koneksi Kreatif Nusantara (Koneksa)" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+</svelte:head>
+
 <div class="container mx-auto p-4 pb-24">
   <!-- Hero Section -->
   <section

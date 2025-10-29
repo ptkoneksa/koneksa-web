@@ -24,6 +24,22 @@
   };
 </script>
 
+<svelte:head>
+  <title>{talent?.name} | Konvy | Koneksa Environment</title>
+  <meta
+    name="description"
+    content="{talent?.description ?? ''} - Konvy | Koneksa Environment"
+  />
+  <meta
+    name="keywords"
+    content="{talent?.name ?? ''} - Konvy | Koneksa Environment"
+  />
+  <meta name="author" content="PT Koneksi Kreatif Nusantara (Koneksa)" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+</svelte:head>
+
 {#if data.error}
   <div class="container mx-auto p-4 pb-24">
     <h1>Error</h1>
