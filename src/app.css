@@ -4,15 +4,17 @@
 @theme {
   --font-lexend: "Lexend", "sans-serif";
 
-  --color-brand: oklch(0.6116 0.1888 39.64);
+  --color-brand: #dc4e0c;
   --color-black: oklch(15% 0 0);
   --color-accent: oklch(84.41% 0.0789 282.71);
+  --color-gray: oklch(37.3% 0.034 259.733);
 }
 
 @layer base {
   html {
     font-family: var(--font-lexend);
     scroll-behavior: smooth;
+    color: var(--color-gray);
   }
 
   h1 {
@@ -36,7 +38,7 @@
   }
 
   .button {
-    @apply bg-brand hover:bg-brand/80 text-white px-4 py-2 rounded-tl-2xl rounded-br-2xl cursor-pointer transition-all duration-300 text-nowrap;
+    @apply bg-brand hover:bg-brand/80 text-white backdrop-blur-sm px-4 py-2 rounded-tl-2xl rounded-br-2xl cursor-pointer transition-all duration-300 text-nowrap;
   }
 
   .card {
