@@ -4,7 +4,7 @@ import { goto } from "$app/navigation";
 export const load = async ({ url }) => {
   if (browser) {
     const token = url.searchParams.get("token");
-    const refreshToken = url.searchParams.get("refreshToken");
+    const refreshToken = url.searchParams.get("refresh_token");
     const targetRedirectUrl =
       localStorage.getItem("targetRedirectUrl") ?? "/account";
 
