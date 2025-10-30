@@ -1,6 +1,6 @@
 import { browser } from "$app/environment";
 import { goto } from "$app/navigation";
-import { PUBLIC_CONNECT_API_URL } from "$env/static/public";
+import { env } from "$env/dynamic/public";
 import { verifyAccessToken } from "$lib/api/connect/access_token";
 import type { ConnectUser } from "$lib/api/connect/models";
 import type { ConnectWebResponse } from "$lib/api/connect/web_response";
@@ -17,7 +17,7 @@ export const load = async ({ url }) => {
     }
 
     const connectUserResponse = await fetch(
-      `${PUBLIC_CONNECT_API_URL}/users/me`,
+      `${env.PUBLIC_CONNECT_API_URL}/users/me`,
       {
         headers: {
           Authorization: `Bearer ${authResponse.accessToken}`,

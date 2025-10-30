@@ -1,10 +1,7 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import { PUBLIC_CONNECT_API_URL } from "$env/static/public";
-  import {
-    getAccessToken,
-    verifyAccessToken,
-  } from "$lib/api/connect/access_token.js";
+  import { env } from "$env/dynamic/public";
+  import { getAccessToken } from "$lib/api/connect/access_token.js";
   import type { ConnectWebResponse } from "$lib/api/connect/web_response.js";
   import { maskEmail } from "$lib/util/masking.js";
   import Icon from "@iconify/svelte";
@@ -68,7 +65,7 @@
     sendVerifyEmailLoading = true;
     try {
       const response = await fetch(
-        `${PUBLIC_CONNECT_API_URL}/auth/verify-email-request`,
+        `${env.PUBLIC_CONNECT_API_URL}/auth/verify-email-request`,
         {
           method: "POST",
           headers: {

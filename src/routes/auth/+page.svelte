@@ -1,6 +1,6 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import { PUBLIC_CONNECT_API_URL } from "$env/static/public";
+  import { env } from "$env/dynamic/public";
   import type { AuthResponse } from "$lib/api/connect/models";
   import type { ConnectWebResponse } from "$lib/api/connect/web_response";
   import { connectUser } from "$lib/stores/connect.js";
@@ -14,7 +14,9 @@
   let isEmailAndPassword = $state(false);
 
   const handleOAuthLogin = (provider: string) => {
-    const authUrl = new URL(`${PUBLIC_CONNECT_API_URL}/auth/oauth/${provider}`);
+    const authUrl = new URL(
+      `${env.PUBLIC_CONNECT_API_URL}/auth/oauth/${provider}`
+    );
     authUrl.searchParams.set("targetRedirectUrl", targetRedirectUrl);
     window.location.href = authUrl.toString();
   };
@@ -29,7 +31,7 @@
     loginError = null;
     loginLoading = true;
     try {
-      const response = await fetch(`${PUBLIC_CONNECT_API_URL}/auth/login`, {
+      const response = await fetch(`${env.PUBLIC_CONNECT_API_URL}/auth/login`, {
         method: "POST",
         body: JSON.stringify({ email: loginEmail, password: loginPassword }),
         headers: {
@@ -75,18 +77,21 @@
     registerError = null;
     registerLoading = true;
     try {
-      const response = await fetch(`${PUBLIC_CONNECT_API_URL}/auth/register`, {
-        method: "POST",
-        body: JSON.stringify({
-          email: registerEmail,
-          fullName: registerFullName,
-          password: registerPassword,
-          confirmPassword: registerConfirmPassword,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `${env.PUBLIC_CONNECT_API_URL}/auth/register`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            email: registerEmail,
+            fullName: registerFullName,
+            password: registerPassword,
+            confirmPassword: registerConfirmPassword,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const responseBody: ConnectWebResponse<AuthResponse> =
         await response.json();
       if (!responseBody.success) {

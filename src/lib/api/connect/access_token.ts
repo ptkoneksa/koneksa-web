@@ -1,4 +1,4 @@
-import { PUBLIC_CONNECT_API_URL } from "$env/static/public";
+import { env } from "$env/dynamic/public";
 import type { AuthResponse, ConnectUser } from "$lib/api/connect/models";
 import type { ConnectWebResponse } from "$lib/api/connect/web_response";
 import { connectUser } from "$lib/stores/connect";
@@ -12,7 +12,7 @@ export const verifyAccessToken = async (): Promise<AuthResponse | null> => {
 
   // Verify access token
   const response = await fetch(
-    `${PUBLIC_CONNECT_API_URL}/auth/verify-access-token`,
+    `${env.PUBLIC_CONNECT_API_URL}/auth/verify-access-token`,
     {
       method: "POST",
       headers: {
@@ -37,7 +37,7 @@ export const verifyAccessToken = async (): Promise<AuthResponse | null> => {
       return null;
     }
     const response = await fetch(
-      `${PUBLIC_CONNECT_API_URL}/auth/refresh-access-token`,
+      `${env.PUBLIC_CONNECT_API_URL}/auth/refresh-access-token`,
       {
         method: "POST",
         headers: {

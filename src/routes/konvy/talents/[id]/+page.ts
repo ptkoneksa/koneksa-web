@@ -1,10 +1,10 @@
-import { PUBLIC_KONVY_API_URL } from "$env/static/public";
+import { env } from "$env/dynamic/public";
 import type { Talent } from "$lib/api/konvy/models";
 
 export const load = async ({ fetch, params }) => {
   try {
     const talent: Talent = await fetch(
-      PUBLIC_KONVY_API_URL + `/talents/${params.id}`
+      env.PUBLIC_KONVY_API_URL + `/talents/${params.id}`
     )
       .then((res) => res.json())
       .then((data) => data.data);

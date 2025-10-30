@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { PUBLIC_CONNECT_API_URL } from "$env/static/public";
+  import { env } from "$env/dynamic/public";
   import type { ConnectWebResponse } from "$lib/api/connect/web_response.js";
   import Icon from "@iconify/svelte";
 
@@ -14,7 +14,7 @@
     sendPasswordResetLoading = true;
     try {
       const response = await fetch(
-        `${PUBLIC_CONNECT_API_URL}/auth/password-reset-request`,
+        `${env.PUBLIC_CONNECT_API_URL}/auth/password-reset-request`,
         {
           method: "POST",
           headers: {
