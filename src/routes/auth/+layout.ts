@@ -1,7 +1,7 @@
 import { browser } from "$app/environment";
 
 export const load = async ({ url }) => {
-  let targetRedirectUrl = url.host + "/account";
+  let targetRedirectUrl = url.origin + "/account";
 
   if (browser) {
     const targetRedirectUrlParams = url.searchParams.get("targetRedirectUrl");

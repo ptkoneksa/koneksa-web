@@ -9,7 +9,7 @@
   let { data } = $props();
   let { targetRedirectUrl, url } = data;
 
-  const isRegister = $derived(url.searchParams.get("register") == "true");
+  let isRegister = $state(url.searchParams.get("register") == "true");
 
   let isEmailAndPassword = $state(false);
 
@@ -108,6 +108,23 @@
       registerLoading = false;
     }
   };
+
+  const error = $derived(url.searchParams.get("error"));
+  let errorMessage = $state<string | null>(null);
+  $effect(() => {
+    if (error) {
+      switch (error) {
+        case "missing_token_or_refresh_token":
+          errorMessage = "Missing token or refresh token. Please login again.";
+          break;
+        case "token_expired":
+          errorMessage = "Your session has expired. Please login again.";
+          break;
+      }
+    } else {
+      errorMessage = null;
+    }
+  });
 </script>
 
 <svelte:head>
@@ -122,6 +139,16 @@
 
 <div class="container mx-auto p-4 pb-24">
   <div class="flex flex-col items-center justify-center p-4 pb-24 min-h-screen">
+    {#if errorMessage}
+      <div
+        class="bg-red-500 text-white p-4 rounded-tl-3xl rounded-br-3xl mb-4 w-full max-w-screen-sm"
+      >
+        <div class="flex items-center gap-2">
+          <Icon icon="mingcute:warning-line" width="24" height="24" />
+          <span>{errorMessage}</span>
+        </div>
+      </div>
+    {/if}
     <div
       class="border-2 border-brand bg-white rounded-tl-3xl rounded-br-3xl p-4 w-full max-w-screen-sm"
     >
@@ -202,6 +229,7 @@
           <p class="text-center text-sm text-black/70 mt-4">
             Already have an account? <a
               href="/auth"
+              onclick={() => (isRegister = false)}
               class="text-brand underline">Sign in</a
             >
           </p>
@@ -257,7 +285,7 @@
                 />
               </div>
               <a
-                href="/auth/forgot-password"
+                href="/auth/password-reset"
                 class="text-brand underline text-xs">Forgot password?</a
               >
             </div>
@@ -273,8 +301,11 @@
             <p class="text-center text-sm text-black/70 mt-4">
               Don't have an account? <a
                 href="/auth?register=true"
-                class="text-brand underline">Register</a
+                class="text-brand underline"
+                onclick={() => (isRegister = true)}
               >
+                Register
+              </a>
             </p>
           </form>
         {/if}
