@@ -1,4 +1,6 @@
 <script lang="ts">
+  import ContactForm from "$lib/components/ContactForm.svelte";
+  import Icon from "@iconify/svelte";
   import type { HTMLImgAttributes } from "svelte/elements";
 
   let { data } = $props();
@@ -58,7 +60,7 @@
   class="bg-[url('/background/konvy_background_loop.png')] bg-cover bg-center min-h-[50vh]"
 >
   <div class="container mx-auto p-4 -translate-y-12 relative z-10 group">
-    <div class="bg-white rounded-tl-3xl rounded-br-3xl shadow-2xl p-8">
+    <div class="bg-white rounded-tl-3xl rounded-br-3xl drop-shadow-2xl p-8">
       <div class="grid grid-cols-3 gap-4">
         <div class="col-span-3 lg:col-span-2">
           <h2 class="text-3xl lg:text-5xl font-bold tracking-tighter">
@@ -98,7 +100,7 @@
 </section>
 
 <!-- Other Products & Services Section -->
-<section id="products-services" class="min-h-[50vh] px-8">
+<section id="products-services" class="min-h-[50vh] px-4 md:px-16 pb-24">
   <div class="bg-white rounded-tl-3xl rounded-br-3xl p-8 -translate-y-12">
     <div class="container mx-auto rounded-tl-3xl rounded-br-3xl p-8">
       <h2 class="text-3xl lg:text-5xl font-bold tracking-tighter">
@@ -119,6 +121,83 @@
           </a>
         {/each}
       </div>
+    </div>
+  </div>
+
+  <!-- Details -->
+  <div class="container mx-auto p-4">
+    <div class="space-y-16">
+      {#each data.productAndServices as product, index}
+        {@const remainder = index % 2}
+        {#if remainder === 0 || remainder === 3}
+          <div
+            class="grid grid-cols-1 md:grid-cols-3 gap-4 relative items-center"
+          >
+            <div
+              class="col-span-1 w-full aspect-square bg-accent/10 rounded-tl-3xl rounded-br-3xl drop-shadow-2xl p-8"
+            >
+              <img
+                src={product.image}
+                alt={product.name}
+                class="w-full h-full object-contain"
+              />
+            </div>
+            <div class="col-span-2 sticky top-0 h-fit">
+              <h1 class="text-3xl lg:text-7xl font-bold tracking-tighter">
+                {product.name}
+              </h1>
+              <h3 class="text-xl lg:text-3xl">{product.description}</h3>
+              <a
+                href={product.link}
+                target={product.target}
+                class="button block w-max mt-2"
+              >
+                <span>View {product.name}</span>
+              </a>
+            </div>
+          </div>
+        {:else}
+          <div
+            class="flex flex-col-reverse md:grid md:grid-cols-3 gap-4 relative items-center"
+          >
+            <div class="col-span-2 sticky top-0 h-fit">
+              <h1 class="text-3xl lg:text-7xl font-bold tracking-tighter">
+                {product.name}
+              </h1>
+              <h3 class="text-xl lg:text-3xl">{product.description}</h3>
+              <a
+                href={product.link}
+                target={product.target}
+                class="button block w-max mt-2"
+              >
+                <span>View {product.name}</span>
+              </a>
+            </div>
+            <div
+              class="col-span-1 w-full aspect-square bg-accent/10 rounded-tl-3xl rounded-br-3xl drop-shadow-2xl p-8"
+            >
+              <img
+                src={product.image}
+                alt={product.name}
+                class="w-full h-full object-contain"
+              />
+            </div>
+          </div>
+        {/if}
+      {/each}
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="min-h-[50vh] px-4 md:px-16 pb-24">
+  <div class="container mx-auto p-4">
+    <h2 class="text-3xl lg:text-5xl font-bold tracking-tighter">Contact Us</h2>
+    <p class="text-xl lg:text-3xl">
+      Have any questions or feedback? We'd love to hear from you!
+    </p>
+    <div class="grid grid-cols-2">
+      <ContactForm />
     </div>
   </div>
 </section>

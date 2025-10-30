@@ -52,4 +52,8 @@
   .input input {
     @apply outline-none w-full;
   }
+
+  .input textarea {
+    @apply outline-none w-full;
+  }
 }

@@ -31,15 +31,15 @@
   let { navigation } = $props();
 </script>
 
-<footer class="pt-12 pb-24 bg-brand text-white relative z-10 min-h-[25vh]">
-  <div class="container mx-auto p-4">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8">
+<footer
+  class="bg-[url('/logo/koneksa_logotype.png')] text-gray relative z-10 min-h-[25vh] p-4 md:p-16"
+>
+  <div
+    class="w-full mx-auto p-8 bg-white/90 drop-shadow-2xl backdrop-blur-sm rounded-tl-3xl rounded-br-3xl"
+  >
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-4">
       <div>
-        <img
-          src="/logo/koneksa_logotype.png"
-          alt="Koneksa"
-          class="h-10 brightness-0 invert"
-        />
+        <img src="/logo/koneksa_logotype.png" alt="Koneksa" class="h-10" />
         <p>PT Koneksi Kreatif Nusantara (Koneksa)</p>
         <p>Connect Together, Made Simple.</p>
       </div>
@@ -77,8 +77,8 @@
         </div>
       </div>
     </div>
-    <hr class="my-8 border-2 border-white/10" />
-    <p class="text-center text-white mt-8">
+    <hr class="my-8 border-2 border-black/10" />
+    <p class="text-center mt-8">
       &copy; {new Date().getFullYear()} PT Koneksi Kreatif Nusantara (Koneksa). All
       rights reserved.
     </p>

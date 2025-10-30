@@ -117,6 +117,14 @@
   </div>
 </nav>
 
+<!-- Scroll to top button -->
+<button
+  class="fixed bottom-4 right-4 drop-shadow-2xl bg-brand text-white rounded-tl-3xl rounded-br-3xl p-4 cursor-pointer z-50"
+  onclick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+>
+  <Icon icon="mingcute:arrow-up-line" width="24" height="24" />
+</button>
+
 <main class="min-h-screen pt-20">
   <div class="relative z-10">
     {@render children?.()}
