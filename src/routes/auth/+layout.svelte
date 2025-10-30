@@ -25,9 +25,6 @@
     <a href="/" class="text-white/70 underline">Visit www.koneksa.id</a>
   </div>
   <main class="col-span-2 lg:col-span-1 min-h-screen relative">
-    <div
-      class="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-brand/10 md:from-brand/20 to-white"
-    ></div>
     <div class="relative z-10">
       {@render children?.()}
     </div>

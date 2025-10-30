@@ -101,7 +101,9 @@
 
 <!-- Other Products & Services Section -->
 <section id="products-services" class="min-h-[50vh] px-4 md:px-16 pb-24">
-  <div class="bg-white rounded-tl-3xl rounded-br-3xl p-8 -translate-y-12">
+  <div
+    class="bg-white rounded-tl-3xl rounded-br-3xl p-0 md:p-8 -translate-y-12"
+  >
     <div class="container mx-auto rounded-tl-3xl rounded-br-3xl p-8">
       <h2 class="text-3xl lg:text-5xl font-bold tracking-tighter">
         Our Products & Services
@@ -196,7 +198,7 @@
     <p class="text-xl lg:text-3xl">
       Have any questions or feedback? We'd love to hear from you!
     </p>
-    <div class="grid grid-cols-2">
+    <div class="grid grid-cols-1 md:grid-cols-2">
       <ContactForm />
     </div>
   </div>
