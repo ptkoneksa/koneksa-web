@@ -17,6 +17,6 @@ export const load = async ({ url }) => {
     localStorage.setItem("refreshToken", refreshToken);
     localStorage.removeItem("targetRedirectUrl");
 
-    goto(targetRedirectUrl);
+    window.location.href = targetRedirectUrl;
   }
 };
