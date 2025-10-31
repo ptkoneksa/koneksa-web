@@ -1,5 +1,8 @@
 <script lang="ts">
+  import BgGrid from "$lib/components/scenes/BgGrid.svelte";
   import Icon from "@iconify/svelte";
+  import Finding from "$lib/assets/animation/finding.mp4";
+  import Puzzle from "$lib/assets/animation/puzzle.mp4";
 
   let { data } = $props();
   let { talents } = data;
@@ -16,122 +19,147 @@
     content="Konvy, Koneksa Environment, Talent, Agency, Platform"
   />
   <meta name="author" content="PT Koneksi Kreatif Nusantara (Koneksa)" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="index, follow" />
-  <meta name="googlebot" content="index, follow" />
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content="Konvy | Koneksa Environment" />
+  <meta
+    property="twitter:description"
+    content="Konvy is a talent agency platform with Koneksa Environment."
+  />
+  <meta property="twitter:image" content="/logo/konvy_logo_brand.png" />
+  <!-- Facebook/Open Graph -->
+  <meta property="og:title" content="Konvy | Koneksa Environment" />
+  <meta
+    property="og:description"
+    content="Konvy is a talent agency platform with Koneksa Environment."
+  />
+  <meta property="og:image" content="/logo/konvy_logo_brand.png" />
+  <meta property="og:url" content="https://koneksa.id/konvy" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Konvy | Koneksa Environment" />
 </svelte:head>
 
-<div class="container mx-auto p-4 pb-24">
-  <!-- Hero Section -->
-  <section
-    id="hero"
-    class="min-h-[50vh] flex flex-col items-start justify-center"
-  >
-    <img src="/logo/konvy_logo_brand.png" alt="Konvy" class="h-24" />
-    <h1 class="text-brand tracking-tighter font-medium">Koneksa Environment</h1>
-    <h2>
-      Konvy is a <span class="text-brand underline">talent agency</span> platform
-      with Koneksa Environment.
-    </h2>
-    <p>
-      There is two different types of Konvy: <span class="text-brand underline"
-        >Bridge</span
-      >
-      and <span class="text-brand underline">Team</span>.
-    </p>
-    <ul class="list-disc list-inside text-sm text-black/70">
-      <li>
-        <span class="text-brand underline">Bridge</span> is a platform that
-        connects you with our talents that
-        <span class="text-brand">you can hire</span>.
-      </li>
-      <li>
-        <span class="text-brand underline">Team</span> is our internal team that
-        works for PT Koneksa.
-      </li>
-    </ul>
-    <div class="flex items-center flex-wrap gap-2 mt-4">
-      <a href="#talents">
-        <button class="button flex items-center gap-2">
-          <Icon icon="mingcute:arrow-down-line" width="24" height="24" />
-          <span>Find & Hire Talent</span>
-        </button>
-      </a>
-      <a href="/konvy/teams">
-        <button class="button flex items-center gap-2">
-          <Icon icon="mingcute:arrow-right-line" width="24" height="24" />
-          <span>View Our Internal Teams</span>
-        </button>
-      </a>
-    </div>
-  </section>
-
-  <!-- Talents Section -->
-  <section id="talents">
-    <div>
-      <h2>Konvy Bridge</h2>
-      <p>
-        a bridge that connects you with <img
-          src="/logo/konvy_logo_black.png"
-          alt="Koneksa Environment"
-          class="h-6 inline-block"
-        /> talents.
-      </p>
-      <p>
-        Showing you {talents?.totalItems ?? 0} featured talents.
-        <a href="/konvy/talents" class="text-brand underline">Click here</a> to view
-        all talents.
-      </p>
-    </div>
-
-    <!-- List of Talents -->
-    {#if talents}
+<!-- Hero Section -->
+<section id="hero" class="container mx-auto p-4 pb-24">
+  <BgGrid isBottomMask={true}>
+    <div class="h-[50vh] relative overflow-hidden p-4">
       <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4"
+        class="grid grid-cols-1 lg:grid-cols-5 gap-4 justify-center items-center"
       >
-        {#each talents.items ?? [] as talent}
-          <div
-            class="card bg-brand aspect-square text-white relative overflow-hidden"
-          >
+        <div class="col-span-1"></div>
+        <div class="col-span-2 card bg-brand aspect-square">
+          <video
+            src={Finding}
+            autoplay
+            loop
+            muted
+            class="w-full h-full object-cover rounded-tl-3xl rounded-br-3xl"
+          ></video>
+        </div>
+        <div
+          class="col-span-1 card bg-accent aspect-square -translate-y-48 translate-x-32 scale-75 lg:translate-y-0 lg:translate-x-0 lg:scale-100"
+        >
+          <video
+            src={Puzzle}
+            autoplay
+            loop
+            muted
+            class="w-full h-full object-cover rounded-tl-3xl rounded-br-3xl"
+          ></video>
+        </div>
+        <div class="col-span-1"></div>
+      </div>
+    </div>
+  </BgGrid>
+
+  <div class="-translate-y-16 px-8">
+    <h1 class="text-4xl lg:text-8xl">
+      a <span class="font-bold">bridge</span> that connects you with our talents
+    </h1>
+    <a href="#talents" class="block w-max">
+      <button
+        class="button lg:px-8 lg:py-4 text-base lg:text-lg flex items-center gap-2"
+      >
+        <Icon icon="mingcute:arrow-down-line" width="24" height="24" />
+        <span>Discover Our Talents</span>
+      </button>
+    </a>
+  </div>
+</section>
+
+<!-- About Section -->
+<section
+  id="about"
+  class="min-h-[50vh] lg:mx-8 bg-accent rounded-tl-3xl rounded-br-3xl"
+>
+  <div
+    class="container mx-auto p-8 pb-24 bg-white rounded-tl-3xl rounded-br-3xl -translate-y-12 drop-shadow-2xl"
+  >
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div class="col-span-2">
+        <h1 class="text-5xl tracking-tighter">
+          Realize Your <span class="font-bold">Creative & Tech</span> Ideas
+        </h1>
+        <h2 class="text-5xl tracking-tighter">with Our Talents</h2>
+        <p class="text-2xl text-justify">
+          Our talents are not just creative and tech experts, they are also
+          problem solvers. They are able to understand your needs and provide
+          solutions that are tailored to your business.
+        </p>
+      </div>
+      <div
+        class="col-span-2 lg:col-span-1 bg-brand rounded-tl-3xl rounded-br-3xl p-8 lg:-translate-y-16 drop-shadow-2xl"
+      >
+        <img
+          src="/logo/konvy_logo_white.png"
+          alt="Konvy"
+          class="w-full h-full object-contain"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Talent Section -->
+<section id="talents" class="container mx-auto p-4 pb-24 mt-8">
+  <div>
+    <h2 class="text-5xl tracking-tighter">Our Talents</h2>
+  </div>
+  {#if talents}
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4"
+    >
+      {#each talents.items ?? [] as talent}
+        <div
+          class="card bg-brand aspect-square text-white relative overflow-hidden"
+        >
+          <img
+            src="/background/konvy_background_loop.png"
+            alt="Konvy Background"
+            class="absolute top-0 left-0 w-full h-full object-cover"
+          />
+          {#if talent.imageUrl}
             <img
-              src="/background/konvy_background_loop.png"
-              alt="Konvy Background"
+              src={talent.imageUrl}
+              alt={talent.name}
               class="absolute top-0 left-0 w-full h-full object-cover"
             />
-            {#if talent.imageUrl}
-              <img
-                src={talent.imageUrl}
-                alt={talent.name}
-                class="absolute top-0 left-0 w-full h-full object-cover"
-              />
-            {/if}
-            <div
-              class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 via-black/60 to-transparent"
-            >
-              <h3>{talent.name}</h3>
-              <p class="text-white/70 line-clamp-1">{talent.description}</p>
-              <a href={`/konvy/talents/${talent.slug}`}>
-                <button class="button mt-2">View Talent</button>
-              </a>
-            </div>
+          {/if}
+          <div
+            class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 via-black/60 to-transparent"
+          >
+            <h3>{talent.name}</h3>
+            <p class="text-white/70 line-clamp-1">{talent.description}</p>
+            <a href={`/konvy/talents/${talent.slug}`}>
+              <button class="button mt-2">View Talent</button>
+            </a>
           </div>
-        {/each}
-      </div>
-    {:else}
-      <p class="text-black/70 italic my-4">
-        No talents found. Please check back later.
-      </p>
-    {/if}
-
-    <div class="mt-8 w-max">
-      <p class="text-black/70 italic">
-        ~ Maybe not what you're looking for? <a
-          href="/konvy/teams"
-          class="text-brand underline"
-        >
-          View Our Internal Teams
-        </a> ~
-      </p>
+        </div>
+      {/each}
     </div>
-  </section>
-</div>
+  {:else}
+    <p class="text-black/70 italic my-4">
+      No talents found. Please check back later.
+    </p>
+  {/if}
+</section>

@@ -21,9 +21,29 @@
   />
   <meta name="keywords" content="Koneksa, Connect, Together, Made, Simple" />
   <meta name="author" content="PT Koneksi Kreatif Nusantara (Koneksa)" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="index, follow" />
-  <meta name="googlebot" content="index, follow" />
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta
+    property="twitter:title"
+    content="Koneksa | Connect Together, Made Simple."
+  />
+  <meta
+    property="twitter:description"
+    content="Koneksa is a central hub for all Koneksa services."
+  />
+  <meta property="twitter:image" content="/logo/koneksa_logotype.png" />
+  <!-- Facebook/Open Graph -->
+  <meta
+    property="og:title"
+    content="Koneksa | Connect Together, Made Simple."
+  />
+  <meta
+    property="og:description"
+    content="Koneksa is a central hub for all Koneksa services."
+  />
+  <meta property="og:image" content="/logo/koneksa_logotype.png" />
+  <meta property="og:url" content="https://koneksa.id" />
+  <meta property="og:type" content="website" />
 </svelte:head>
 
 <!-- Hero Section -->

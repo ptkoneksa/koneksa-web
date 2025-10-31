@@ -137,9 +137,24 @@
   <meta name="description" content="Login or register to Connect" />
   <meta name="keywords" content="Auth, Connect, Together, Made, Simple" />
   <meta name="author" content="PT Koneksi Kreatif Nusantara (Koneksa)" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="index, follow" />
-  <meta name="googlebot" content="index, follow" />
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta
+    property="twitter:title"
+    content="Auth | Connect Together, Made Simple."
+  />
+  <meta property="twitter:description" content="Login or register to Connect" />
+  <meta property="twitter:image" content="/logo/connect_logotype.png" />
+  <!-- Facebook/Open Graph -->
+  <meta property="og:title" content="Auth | Connect Together, Made Simple." />
+  <meta property="og:description" content="Login or register to Connect" />
+  <meta property="og:image" content="/logo/connect_logotype.png" />
+  <meta property="og:url" content="https://koneksa.id/auth" />
+  <meta property="og:type" content="website" />
+  <meta
+    property="og:site_name"
+    content="Auth | Connect Together, Made Simple."
+  />
 </svelte:head>
 
 <div class="container mx-auto p-4 pb-24">

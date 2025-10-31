@@ -35,9 +35,33 @@
     content="{talent?.name ?? ''} - Konvy | Koneksa Environment"
   />
   <meta name="author" content="PT Koneksi Kreatif Nusantara (Koneksa)" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="index, follow" />
-  <meta name="googlebot" content="index, follow" />
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta
+    property="twitter:title"
+    content="{talent?.name} | Konvy | Koneksa Environment"
+  />
+  <meta
+    property="twitter:description"
+    content="{talent?.description ?? ''} - Konvy | Koneksa Environment"
+  />
+  <meta property="twitter:image" content={talent?.imageUrl ?? ""} />
+  <!-- Facebook/Open Graph -->
+  <meta
+    property="og:title"
+    content="{talent?.name} | Konvy | Koneksa Environment"
+  />
+  <meta
+    property="og:description"
+    content="{talent?.description ?? ''} - Konvy | Koneksa Environment"
+  />
+  <meta property="og:image" content={talent?.imageUrl ?? ""} />
+  <meta
+    property="og:url"
+    content="https://konvy.koneksa.id/talents/{talent?.id}"
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Konvy | Koneksa Environment" />
 </svelte:head>
 
 {#if data.error}
