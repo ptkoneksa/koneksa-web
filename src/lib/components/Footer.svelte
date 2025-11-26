@@ -40,7 +40,6 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-4">
       <div>
         <img src="/logo/koneksa_logotype.png" alt="Koneksa" class="h-10" />
-        <p>PT Koneksi Kreatif Nusantara (Koneksa)</p>
         <p>Connect Together, Made Simple.</p>
       </div>
       <div>
@@ -78,9 +77,11 @@
       </div>
     </div>
     <hr class="my-8 border-2 border-black/10" />
-    <p class="text-center mt-8">
-      &copy; {new Date().getFullYear()} PT Koneksi Kreatif Nusantara (Koneksa). All
-      rights reserved.
-    </p>
+    <div class="text-center mt-8">
+      <p>
+        &copy; {new Date().getFullYear()} PT Koneksi Kreatif Nusantara (Koneksa).
+      </p>
+      <p>All rights reserved.</p>
+    </div>
   </div>
 </footer>

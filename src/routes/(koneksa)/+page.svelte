@@ -84,7 +84,7 @@
       <div class="grid grid-cols-3 gap-4">
         <div class="col-span-3 lg:col-span-2">
           <h2 class="text-3xl lg:text-5xl font-bold tracking-tighter">
-            Hire creative digital talents
+            Hire Creative & Tech Talents
           </h2>
           <h3 class="text-xl lg:text-3xl">
             Konvy is a talent agency platform with Koneksa Environment. A bridge

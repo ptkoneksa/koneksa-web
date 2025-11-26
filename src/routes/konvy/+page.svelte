@@ -53,7 +53,7 @@
             autoplay
             loop
             muted
-            class="w-full h-full object-cover rounded-tl-3xl rounded-br-3xl"
+            class="w-full h-full object-cover rounded-tl-2xl rounded-br-2xl"
           ></video>
         </div>
         <div
@@ -64,7 +64,7 @@
             autoplay
             loop
             muted
-            class="w-full h-full object-cover rounded-tl-3xl rounded-br-3xl"
+            class="w-full h-full object-cover rounded-tl-2xl rounded-br-2xl"
           ></video>
         </div>
         <div class="col-span-1"></div>
@@ -101,10 +101,18 @@
           Realize Your <span class="font-bold">Creative & Tech</span> Ideas
         </h1>
         <h2 class="text-5xl tracking-tighter">with Our Talents</h2>
-        <p class="text-2xl text-justify">
-          Our talents are not just creative and tech experts, they are also
-          problem solvers. They are able to understand your needs and provide
-          solutions that are tailored to your business.
+        <p class="text-2xl text-justify w-full max-w-screen-sm mt-4">
+          Our talents are not just creative and tech experts, there are
+          <span class="font-bold text-brand">{talents?.items.length}</span> talents
+          are able to understand your needs and provide solutions that are tailored
+          to your business.
+        </p>
+        <p class="mt-4 text-lg">
+          or you can <a href="/contact" class="text-brand">contact us</a> directly
+          about your requirements.
+        </p>
+        <p class="text-gray/70">
+          We will help you find the best talent match your requirements.
         </p>
       </div>
       <div

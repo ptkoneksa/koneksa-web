@@ -1,30 +1,32 @@
 <script lang="ts">
   import Footer from "$lib/components/Footer.svelte";
+  import Navbar from "$lib/components/Navbar.svelte";
 
-  let { children } = $props();
+  let { children, data } = $props();
+
+  const serviceInfo = {
+    name: "Konvy",
+    image: "/logo/konvy_logo_brand.png",
+    link: "/konvy",
+  };
+
+  const navigation = [
+    {
+      label: "Home",
+      href: "/konvy",
+    },
+    {
+      label: "Talents",
+      href: "/konvy#talents",
+    },
+    {
+      label: "Teams",
+      href: "/konvy/teams",
+    },
+  ];
 </script>
 
-<nav class="w-full">
-  <div class="container mx-auto p-4">
-    <div class="flex items-center justify-between">
-      <div class="flex items-center gap-2">
-        <a href="/" class="text-2xl font-bold">
-          <img src="/logo/koneksa_logo.png" alt="Koneksa" class="h-10" />
-        </a>
-        <a href="/konvy" class="text-2xl font-bold">
-          <img src="/logo/konvy_logo_brand.png" alt="Konvy" class="h-10" />
-        </a>
-      </div>
-
-      <!-- Navigation -->
-      <div class="flex items-center gap-4 uppercase">
-        <a href="/" class="font-medium"> Home </a>
-        <a href="/konvy/talents" class="font-medium"> Talents </a>
-        <a href="/konvy/teams" class="font-medium"> Teams </a>
-      </div>
-    </div>
-  </div>
-</nav>
+<Navbar {serviceInfo} {navigation} {data} />
 
 <main class="min-h-screen pt-20">
   <div class="relative z-10">
@@ -32,4 +34,4 @@
   </div>
 </main>
 
-<Footer navigation={[]} />
+<Footer {navigation} />
