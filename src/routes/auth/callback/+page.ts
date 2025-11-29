@@ -5,7 +5,7 @@ export const load = async ({ url }) => {
   if (browser) {
     const token = url.searchParams.get("token");
     const refreshToken = url.searchParams.get("refresh_token");
-    const targetRedirectUrl =
+    let targetRedirectUrl =
       localStorage.getItem("targetRedirectUrl") ?? "/account";
 
     if (!token || !refreshToken) {
@@ -16,6 +16,13 @@ export const load = async ({ url }) => {
     localStorage.setItem("accessToken", token);
     localStorage.setItem("refreshToken", refreshToken);
     localStorage.removeItem("targetRedirectUrl");
+
+    if (targetRedirectUrl != "/account") {
+      const url = new URL(targetRedirectUrl);
+      url.searchParams.set("token", token);
+      url.searchParams.set("refresh_token", refreshToken);
+      targetRedirectUrl = url.toString();
+    }
 
     window.location.href = targetRedirectUrl;
   }
